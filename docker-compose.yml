@@ -1,0 +1,20 @@
+services:
+  deepglycansite:
+    image: drossotto/deepglycansite:latest
+    volumes:
+      - type: bind
+        source: ./shared_data
+        target: /app/DeepGlycanSite/shared_data
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+    stdin_open: true
+    tty: true
+    networks: 
+      - mol_dock_network
+    container_name: deepglycansite
+
+networks:
+  mol_dock_network:
+    driver: bridge
+    name: deepglycansite_network
